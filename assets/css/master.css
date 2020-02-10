@@ -1,0 +1,224 @@
+/* Cart dueño design */
+
+.datos-owne {
+    position: relative;
+    width: 600px;
+    height: 200px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+}
+
+.datos-owne .data {
+    width: 60%;
+    height: 100%;
+    float: right;
+    padding: 30px 40px;
+    box-sizing: border-box;
+}
+
+.datos-owne .data .title {
+    font-size: 1.2em;
+    color: #444444;
+    font-weight: 600;
+}
+
+.datos-owne .picture {
+    width: 40%;
+    height: 100%;
+    float: left;
+    position: relative;
+}
+
+.datos-owne .picture img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.datos-owne .icon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+    background: #04B909;
+    cursor: pointer;
+    clip-path: polygon(100% 0, 0 0, 0 100%);
+    font-size: 1.5em;
+    color: #fff;
+}
+
+
+/* Estilos de la galería con grid css */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 400px 300px 300px 200px 200px;
+    grid-gap: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.gallery .detalle {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Pseudoelemento - después*/
+
+.gallery .detalle::after {
+    /* Contenido obligatorio - vacio */
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    right: 0;
+    left: 100%;
+    background: rgba(0, 0, 0, .4);
+}
+
+
+/* Pseudoclase */
+
+.gallery .detalle {
+    border-radius: 0 20px 0 20px;
+}
+
+.gallery .detalle:hover::after {
+    left: 0;
+    animation: hover-card;
+    animation-duration: 0.5s;
+}
+
+@keyframes hover-card {
+    0% {
+        left: 100%;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+
+/*  */
+
+.gallery .info {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 10px;
+    /* Posicionamiento delantero */
+    z-index: 30;
+}
+
+.gallery .picture {}
+
+.gallery .picture img,
+.gallery .picture {
+    width: 100%;
+    height: 100%;
+}
+
+.gallery .detalle.d1 {
+    /* grid-row: ; */
+}
+
+.gallery .detalle.d2 {
+    grid-column: 1/4;
+    grid-row: 1;
+}
+
+.gallery .detalle.d3 {}
+
+.gallery .detalle.d4 {
+    grid-row: 2;
+    grid-column: 2/4;
+}
+
+.gallery .detalle.d5 {
+    grid-column: 2/4;
+}
+
+.gallery .detalle.d6 {
+    grid-row: 5;
+    grid-column: 2/4;
+}
+
+.gallery .detalle.d7 {
+    /* grid-column: 4; */
+    grid-row: 4/6;
+}
+
+.gallery .detalle.d8 {
+    grid-row: 4;
+    grid-column: 3;
+}
+
+
+/* Button */
+
+.button {
+    outline: none;
+    border: none;
+    background: #00BEFF;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+/* services */
+
+.services {
+    /* background: #f1f1f1; */
+    text-align: center;
+}
+
+.title-style {
+    display: inline-block;
+    text-transform: uppercase;
+    border-bottom: 4px solid #3498db;
+    font-size: 20px;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+
+.services .contenedor {
+    padding: 20px;
+    margin: auto;
+}
+
+.services .servicio {
+    display: inline-block;
+    width: 33.33%;
+    margin: 0 -2px;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.services .servicio:hover {
+    background: #ddd;
+}
+
+.services .servicio i {
+    color: #3498db;
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+
+.services .servicio .title-sc {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0;
+}
