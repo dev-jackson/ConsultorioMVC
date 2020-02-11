@@ -7,7 +7,7 @@
         public function index(){
             require_once LIB;
             require_once HEADER;
-            require_once 'inicio.php';
+            require_once 'view/inicio.php';
             require_once FOOTER;
         }
         public function static(){
