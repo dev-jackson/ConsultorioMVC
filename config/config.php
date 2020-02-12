@@ -8,6 +8,7 @@
     //BDD
     define('SERVIDOR','localhost');
     define('PUERTO','3036');
-    define('NOMBRE','NO');
+    define('NOMBREDB','consultorio');
+    define('USUARIO','root');
     define('PASSWORD','');
 ?>
