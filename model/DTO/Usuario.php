@@ -35,7 +35,7 @@
     public function setClave($clave){
         $this->clave = password_hash($clave,PASSWORD_DEFAULT,['cost'=> 10]);
     }
-    public function getTipoUsuario($tipo){
+    public function setTipoUsuario($tipo){
         $this->tipo_usuario = $tipo;
     }
 
