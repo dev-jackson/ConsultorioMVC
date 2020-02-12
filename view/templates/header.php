@@ -1,4 +1,5 @@
 
+<link rel="icon" href="assets/img/logo.png">
 <header>
         <div class="cabecera">
             <a href="index.html" id="logo">Consultorio Médico Luis Salinas</a>

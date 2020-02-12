@@ -178,12 +178,10 @@ function justNumbers(e)
   	}
 
 	}else{
-
+    
 		swal("Buen trabajo!", "Logueo exitoso!", "success");
 		setTimeout(function(){window.location.href ="index.php";}, 1500);
-		
 	}
-
 
   }
 </script>
