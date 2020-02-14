@@ -33,7 +33,7 @@
         $this->apellidos = $apellidos;
     }
     public function setClave($clave){
-        $this->clave = password_hash($clave,PASSWORD_DEFAULT,['cost'=> 10]);
+        $this->clave = password_hash($clave,PASSWORD_DEFAULT);
     }
     public function setTipoUsuario($tipo){
         $this->tipo_usuario = $tipo;

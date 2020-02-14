@@ -9,7 +9,22 @@
             $this->user= new UsuarioDAO();
         }
         public function login(){
-            
+            $username = $_POST['uname'];
+            $password = $_POST['lpassword'];
+            $rest=$this->user->getUsuario($username);
+            if(password_verify($password,$rest['clave'])){
+                if($rest['tipo_usuario']=='C'){
+                    session_start();
+                    $_SESSION['C']=$rest['nombres'];
+                    header('Location: index.php?');
+                }else{
+                    session_start();
+                    $_SESSION['A']=$rest['nombres'];
+                    header('Location: index.php?');
+                }
+            }else{
+               echo 'false';
+            }  
         }
         public function validateUsuario(){
             $id= $_POST['username'];
@@ -28,10 +43,16 @@
             $u->setClave($_POST['lpassword']);
             $u->setTipoUsuario('C');
             $this->user->crearUsuario($u);
-            
+            session_start();
+            $_SESSION['C']=$u->getNombres();
             require_once HEADER;
             require_once header("Location: index.php?");
             require_once FOOTER;
+        }
+        public function destroySession(){
+            session_start();
+            session_destroy();
+            header("Location: index.php?");
         }
     }
 ?>

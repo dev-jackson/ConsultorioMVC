@@ -87,10 +87,10 @@ span.psw {
     <span id="mensaje" style="float: right;"></span>
     
     <label for="nombre"><b>Nombres</b></label>
-    <input type="text" placeholder="Ingrese Nombres" name="nombre" id="nombre"  autocomplete="off" onkeypress="return justLetters(event);"  maxlength=""  onKeyUp="this.value=this.value.toUpperCase();" required>
+    <input type="text" placeholder="Ingrese Nombres" name="nombre" id="nombre"  autocomplete="off" onkeypress="return justLetters(event);"  maxlength="100"  onKeyUp="this.value=this.value.toUpperCase();" required>
     
     <label for="apellido"><b>Apellidos</b></label>
-    <input type="text" placeholder="Ingrese Apellido" name="apellido" id="apellido"  autocomplete="off" onkeypress=""  maxlength="10"  onKeyUp="this.value=this.value.toUpperCase();" required>
+    <input type="text" placeholder="Ingrese Apellido" name="apellido" id="apellido"  autocomplete="off" onkeypress="return justLetters(event);"  maxlength="100"  onKeyUp="this.value=this.value.toUpperCase();" required>
     
     <div class="passwc">
     <label for="psw"><b>Contraseña</b></label>
@@ -156,6 +156,7 @@ function validateExisUser(){
         beforeSend: function(){$("#registro").val("Verificando");},
         success: function(data){
             if(data){
+              console.log(data);
             }else{
                 console.log(data);
                 $("#registro").val("Registro");
@@ -190,18 +191,11 @@ function justNumbers(e)
         }
 
 function justLetters(e){
-    key = e.keyCode || e.which;
-    tecla = String.fromCharCode(key).toString();
-    letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";//Se define todo el abecedario que se quiere que se muestre.
-    especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
-
-    tecla_especial = false
-    for(var i in especiales) {
-        if(key == especiales[i]) {
-            tecla_especial = true;
-            break;
-        }    
-    }
+  tecla = (document.all) ? e.keyCode : e.which;
+  if (tecla==8) return true;
+  patron =/^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
+  te = String.fromCharCode(tecla);
+  return patron.test(te);
 }
 
   function validar(){
@@ -234,6 +228,6 @@ function justLetters(e){
 	    }
   }
   function registro(){
-      window.location.href="index.php?a=dynamic&d=registro";
+      window.location.href="index.php?a=dynamic&d=login";
   }
 </script>   

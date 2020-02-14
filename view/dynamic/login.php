@@ -75,8 +75,9 @@ span.psw {
 </head>
 <body>
 
-<h2>Login</h2>
+<h2 id="login">Login</h2>
 
+<form action="index.php?c=Usuario&a=login" method="post">
 <div class="form">
   <div class="imgcontainer">
     <img src="assets/img/doctor.png" alt="Avatar" class="avatar" >
@@ -100,14 +101,14 @@ span.psw {
     </div>
     
     <div class="passwc">
-    <button type="submit" onclick="validar();" id="ingresar">Iniciar Sesion</button>
+    <button type="submit" onclick="" id="ingresar">Iniciar Sesion</button>
     <button type="button" onclick="registro();" >Registro</button>
     </div>
   </div>
 
 
 </div>
-
+</form>
 </body>
 </html>
 <script type="text/javascript">
@@ -139,7 +140,7 @@ $('body').on('keyup', '#uname', function(){
      $('#ingresar').attr('disabled',true);
 
   }
-})
+});
 
 function mostrarPassword(){
     var cambio = document.getElementById("lpassword");
@@ -179,11 +180,33 @@ function justNumbers(e)
   	}
 
 	}else{
-    
-		swal("Buen trabajo!", "Logueo exitoso!", "success");
-		setTimeout(function(){window.location.href ="index.php";}, 1500);
+    verificarUsuario();
+		//swal("Buen trabajo!", "Logueo exitoso!", "success");
+		//setTimeout(function(){window.location.href ="index.php";}, 1500);
 	}
-
+  }
+  function verificarUsuario(){
+    var usuario = $("#uname").val();
+    var pass = $("lpassword").val();
+    var dataString = "username="+usuario+"&password="+pass+"";
+    $.ajax({
+      type: "POST",
+      url: "index.php?c=Usuario&a=login",
+      data: dataString,
+      cache: false,
+      asyc: true,
+      beforeSend: function(){$("#login").val("Verificando..");},
+      success: function(data){
+        if(data=='true'){
+          console.log(data);
+          swal("Usuario Verificado","Logue exitoso!","success");
+        }else{
+          console.log(data);
+          swal("Usuario Verificado","Usuario No Encotrado!","error");
+          
+        }
+      }
+    });
   }
   function registro(){
       window.location.href="index.php?a=dynamic&d=registro";

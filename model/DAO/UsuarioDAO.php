@@ -13,19 +13,14 @@
             }
         }
 
-        public function validarUsuario($usermane,$pws){
-            $has_pws = hash($pws,PASSWORD_DEFAULT,['cost' => 10]);
-            $sql = "SELECT * FROM usuario WHERE username= ? and clave= ? ";
+        public function validarUsuario($usermane){
+            $sql = "SELECT * FROM usuario WHERE id_usuario= ?";
             try{
                 $preStm = $this->connec->prepare($sql);
-                $preStm->execute(array($usermane,$has_pws));
-                $preStm->fetch(PDO::FETCH_ASSOC);
-                if($preStm > 0){
-                    return true;
-                }else{
-                    return flase;
-                }
-            }catch(Exception $e){
+                $preStm->execute(array($usermane));
+                return $preStm->fetch(PDO::FETCH_ASSOC);
+                
+            }catch(PDOException $e){
                 echo $e->getMessage();
             }
         }
@@ -41,14 +36,9 @@
                     $u->getClave(),
                     $u->getTipoUsuario() 
                 ));
-               $preStm->fecth(PDO::FETCH_ASSOC);
-                if($preStm > 0){
-                    return flase;
-                }else{
-                    return false;
-                }
+               return $preStm->fetch(PDO::FETCH_ASSOC);
            }catch(PDOException $e){
-                echo $e->getMenssage();
+                echo $e->getMessage();
             }
         }
         public function getUsuario($id){
@@ -56,7 +46,7 @@
             try{
                 $preStm = $this->connec->prepare($sql);
                 $preStm->execute(array($id));
-                return $preStm->fetchAll(PDO::FETCH_ASSOC);
+                return $preStm->fetch(PDO::FETCH_ASSOC);
             }catch(Exception $e){
                 echo $e->getMessage();
             }
