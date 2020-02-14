@@ -44,5 +44,7 @@
           })
 
     }
-
+    $("#inicio").click(function(){
+        $("#inicio").addClass('active');  
+    });
 </script>
