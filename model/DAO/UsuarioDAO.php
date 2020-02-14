@@ -43,12 +43,22 @@
                 ));
                $preStm->fecth(PDO::FETCH_ASSOC);
                 if($preStm > 0){
-                    return true;
+                    return flase;
                 }else{
                     return false;
                 }
            }catch(PDOException $e){
                 echo $e->getMenssage();
+            }
+        }
+        public function getUsuario($id){
+            $sql = "SELECT * FROM usuario WHERE id_usuario= ? ";
+            try{
+                $preStm = $this->connec->prepare($sql);
+                $preStm->execute(array($id));
+                return $preStm->fetchAll(PDO::FETCH_ASSOC);
+            }catch(Exception $e){
+                echo $e->getMessage();
             }
         }
     }

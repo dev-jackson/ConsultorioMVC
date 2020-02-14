@@ -8,6 +8,18 @@
         public function __construct(){
             $this->user= new UsuarioDAO();
         }
+        public function login(){
+            
+        }
+        public function validateUsuario(){
+            $id= $_POST['username'];
+            $res=$this->user->getUsuario($id);
+            if($res){
+                echo "";
+            }else{
+                echo "exist";
+            }
+        }
         public function registroUsuario(){
             $u = new Usuario();
             $u->setIdUsuario($_POST['uname']);

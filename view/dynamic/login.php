@@ -98,7 +98,7 @@ span.psw {
       </button>
     </div></div>
     </div>
-        
+    
     <div class="passwc">
     <button type="submit" onclick="validar();" id="ingresar">Iniciar Sesion</button>
     <button type="button" onclick="registro();" >Registro</button>
@@ -140,7 +140,7 @@ $('body').on('keyup', '#uname', function(){
 
   }
 })
-	
+
 function mostrarPassword(){
     var cambio = document.getElementById("lpassword");
     if(cambio.type == "password"){

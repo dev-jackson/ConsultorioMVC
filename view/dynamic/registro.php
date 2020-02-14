@@ -73,7 +73,7 @@ span.psw {
 </style>
 </head>
 <body>
-    <h2>Registro</h2>
+    <h2 id="registro">Registro</h2>
     <form action="index.php?c=Usuario&a=registroUsuario" method="POST">
     <div class="form">
   <div class="imgcontainer">
@@ -87,7 +87,7 @@ span.psw {
     <span id="mensaje" style="float: right;"></span>
     
     <label for="nombre"><b>Nombres</b></label>
-    <input type="text" placeholder="Ingrese Nombres" name="nombre" id="nombre"  autocomplete="off" onkeypress=""  maxlength=""  onKeyUp="this.value=this.value.toUpperCase();" required>
+    <input type="text" placeholder="Ingrese Nombres" name="nombre" id="nombre"  autocomplete="off" onkeypress="return justLetters(event);"  maxlength=""  onKeyUp="this.value=this.value.toUpperCase();" required>
     
     <label for="apellido"><b>Apellidos</b></label>
     <input type="text" placeholder="Ingrese Apellido" name="apellido" id="apellido"  autocomplete="off" onkeypress=""  maxlength="10"  onKeyUp="this.value=this.value.toUpperCase();" required>
@@ -101,7 +101,7 @@ span.psw {
       </button>
     </div></div>
     </div>
-        
+    <div id=msgerror></div>  
     <div class="passwc">
     <button type="submit" onclick="validar();" id="ingresar">Registrase</button>
     <button type="button" onclick="registro();" >Volver</button>
@@ -128,7 +128,7 @@ $('body').on('keyup', '#uname', function(){
     $('#mensaje').text('Formato correcto!');
     $('#mensaje').css({"color":"green"})
     $('#ingresar').attr('disabled',false);
-
+    validateExisUser();
 
   }
   else if(Cedula==''){
@@ -141,10 +141,34 @@ $('body').on('keyup', '#uname', function(){
      $('#mensaje').text('Formato incorrecto');
      $('#mensaje').css({"color":"red"})
      $('#ingresar').attr('disabled',true);
+     clear();
 
   }
 })
-	
+function validateExisUser(){
+    var ci= $("#uname").val();
+    var dataString = "username="+ci;
+    $.ajax({
+        type:"POST",
+        url: "index.php?c=Usuario&a=validateUsuario",
+        data: dataString,
+        cache: false,
+        beforeSend: function(){$("#registro").val("Verificando");},
+        success: function(data){
+            if(data){
+            }else{
+                console.log(data);
+                $("#registro").val("Registro");
+                $("#msgerror").html("<span style='color:#cc0000'>Error:</span> Usuario ya existe. "+data+"");
+                $('#ingresar').attr('disabled',false);
+            }
+        }
+    });
+
+}
+function clear(){
+    $("#msgerror").html("<span></span>");
+}	
 function mostrarPassword(){
     var cambio = document.getElementById("lpassword");
     if(cambio.type == "password"){
@@ -165,7 +189,20 @@ function justNumbers(e)
         return /\d/.test(String.fromCharCode(keynum));
         }
 
+function justLetters(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toString();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";//Se define todo el abecedario que se quiere que se muestre.
+    especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
 
+    tecla_especial = false
+    for(var i in especiales) {
+        if(key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }    
+    }
+}
 
   function validar(){
   	var Usuario= $("#uname").val();
