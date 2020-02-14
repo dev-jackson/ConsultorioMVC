@@ -35,7 +35,7 @@
                 .then((value) => {
                 switch (value) {                                     
                 case "si":
-                           window.location.href ="login.php";    
+                           window.location.href ="index.php?a=dynamic&d=login";    
                   break;
                 case "no":
                                

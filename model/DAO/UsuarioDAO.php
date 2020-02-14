@@ -1,4 +1,6 @@
 <?php
+    require_once 'model/Connection.php';
+    require_once 'model/DTO/Usuario.php';
     class UsuarioDAO{
         
         private $connec;
@@ -18,14 +20,18 @@
                 $preStm = $this->connec->prepare($sql);
                 $preStm->execute(array($usermane,$has_pws));
                 $preStm->fetch(PDO::FETCH_ASSOC);
-                $preStm > 0? return true: return false;
+                if($preStm > 0){
+                    return true;
+                }else{
+                    return flase;
+                }
             }catch(Exception $e){
                 echo $e->getMessage();
             }
         }
 
         public function crearUsuario(Usuario $u){
-            $sql = "INSERT INTO usuario(username,nombres,apellidos,clave,tipo_usuario) VALUES(?,?,?,?,?)";
+            $sql = "INSERT INTO usuario(`id_usuario`,`nombres`,`apellidos`,`clave`,`tipo_usuario`) VALUES(?,?,?,?,?)";
             try{
                 $preStm = $this->connec->prepare($sql);
                 $preStm->execute(array(
@@ -33,11 +39,15 @@
                     $u->getNombres(),
                     $u->getApellidos(),
                     $u->getClave(),
-                    $u->getTipoUsuario();
+                    $u->getTipoUsuario() 
                 ));
-                $preStm->fecth(PDO::FETCH_ASSOC);
-                $preStm > 0? return true:return false;
-            }catch(Exception $e){
+               $preStm->fecth(PDO::FETCH_ASSOC);
+                if($preStm > 0){
+                    return true;
+                }else{
+                    return false;
+                }
+           }catch(PDOException $e){
                 echo $e->getMenssage();
             }
         }

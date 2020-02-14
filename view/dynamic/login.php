@@ -101,6 +101,7 @@ span.psw {
         
     <div class="passwc">
     <button type="submit" onclick="validar();" id="ingresar">Iniciar Sesion</button>
+    <button type="button" onclick="registro();" >Registro</button>
     </div>
   </div>
 
@@ -183,5 +184,8 @@ function justNumbers(e)
 		setTimeout(function(){window.location.href ="index.php";}, 1500);
 	}
 
+  }
+  function registro(){
+      window.location.href="index.php?a=dynamic&d=registro";
   }
 </script>

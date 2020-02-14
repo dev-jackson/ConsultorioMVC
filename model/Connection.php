@@ -14,7 +14,7 @@ class Connection{
         try{
             if(!isset(self::$connection)){
                 self::$connection=new PDO("mysql:host=".SERVIDOR."; port=".PUERTO."; dbname=".NOMBREDB.";",USUARIO,PASSWORD);
-                self::$connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXEPTION);
+                self::$connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); 
                 self::$connection->exec("set character set utf8");
             }
         }catch(Exception $e){

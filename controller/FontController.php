@@ -5,10 +5,14 @@
             $controller = (isset($_REQUEST['c'])) ? $_REQUEST['c']: 'Index' ;
             $action = (isset($_REQUEST['a'])) ? $_REQUEST['a']:'index';
             $controller = strtolower($controller); //convierte a minuscula
-            $controller = ucwords($controller) . "Controller"; //hace que la primera letra sea mayuscula y concatena
-    
-            require_once "controller/" .$controller .".php"; // require de la clase del controlador
-    
+            $controller = ucwords($controller)."Controller"; //hace que la primera letra sea mayuscula y concatena
+            
+            if(strncmp($controller,'Usuario',6)===0){
+                require_once "controller/functionsUsuario/".$controller.".php";
+            }else{
+                require_once "controller/" .$controller .".php"; // require de la clase del controlador   
+            }
+
             $controller = new $controller; // creacion del objeto controlador
             $controller->$action();
         }

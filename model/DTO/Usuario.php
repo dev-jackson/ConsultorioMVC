@@ -1,11 +1,11 @@
 <?php
-    class UsuarioDAO{
+
+    class Usuario{
         private $id_usuario;
         private $nombres;
         private $apellidos;
         private $clave;
         private $tipo_usuario;
-    }
     //getters
     public function getIdUsuario(){
         return $this->id_usuario;
@@ -23,7 +23,7 @@
         return $this->tipo_usuario;
     }
     //setters
-    public function setId($id){
+    public function setIdUsuario($id){
         $this->id_usuario = $id;
     }
     public function setNombres($nombres){
@@ -38,5 +38,5 @@
     public function setTipoUsuario($tipo){
         $this->tipo_usuario = $tipo;
     }
-
+}
 ?>

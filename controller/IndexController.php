@@ -20,9 +20,13 @@
         public function dynamic(){
             require_once LIB;
             $page = $_REQUEST['d'];
-            require_once HEADER;
-            require_once 'view/dynamic/'.$page.'.php';
-            require_once FOOTER;
+            if($page!='registro'&&$page!='login'){
+                require_once HEADER;
+                require_once 'view/dynamic/'.$page.'.php';
+                require_once FOOTER;
+            }else{
+                require_once 'view/dynamic/'.$page.'.php';
+            }
         }
     }
 ?>
