@@ -19,7 +19,16 @@
 </head>
 <body>
 <div class="main">
-  <h1>Mis Citas</h1>
+  <h1><?php
+    if(!isset($_SESSION)){
+      session_start();
+    }
+    if(isset($_SESSION['A'])){
+      echo "Citas";
+    }else{
+      echo "Mis Citas";
+    }
+  ?></h1>
   <ul class="cards">
     <?php
       foreach($result as $rs):
