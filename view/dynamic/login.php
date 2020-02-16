@@ -78,11 +78,13 @@ span.psw {
 <h2 id="login">Login</h2>
 <?php
     session_start();
+    if(isset($_SESSION)){
     if($_SESSION['O']=="f"){
       echo "<p style='color:red;'>Credenciales Incorrectas</p>";
     }elseif($_SESSION['O']="t"){
 
     }
+  }
  ?>
 <form action="index.php?c=Usuario&a=login" method="post">
 <div class="form">
