@@ -14,5 +14,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/master.css">
+    <link rel="stylesheet" href="assets/css/card.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
