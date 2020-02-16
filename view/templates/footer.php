@@ -47,4 +47,7 @@
     $("#inicio").click(function(){
         $("#inicio").addClass('active');  
     });
+    function aviso(){
+        swal("Inicie sesion continuar","Logueo Requerido!","error");
+    }
 </script>

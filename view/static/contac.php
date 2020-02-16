@@ -73,7 +73,7 @@
         </div>
         <div class="contact flex-center" style="flex-direction: column;">
             <h1 class="title-style">Contáctenos</h1>
-            <form action="" class="form">
+            <form action="javascript:void(0)" method="post" class="form" id="ajaxFrom">
                 <div class="sec">
                     <label for="email">Correo</label>
                     <input type="email" name="email" id="email">
@@ -95,8 +95,8 @@
 </body>
 
 <script type="text/javascript">
-    
-    document.getElementById('enviar').onclick = function(){
+    $(document).ready(function($){
+    $('#ajaxFrom').submit(function(e){
         var correo = document.getElementById('email').value;
         var nombre = document.getElementById('nombre').value;
         var mensaje = document.getElementById('mensaje').value;
@@ -112,10 +112,24 @@
         
         }else{
 
-          swal("Buen trabajo!", "Mensaje enviado correctamente", "success");
+          $.ajax({
+            type:"POST",
+            url:"index.php?c=Usuario&a=registroContacto",
+            data:$(this).serialize(),
+            success: function(data){
+                if(data=="t"){
+                    swal("Buen trabajo!", "Mensaje enviado correctamente", "success");
+                    setTimeout(() => {
+                        window.location.href ="index.php?a=static&s=contac";
+                    }, 800); 
+                }else{
+                    swal("Ocurrio Algun Error!", "Mensaje no se a enviado", "error"); 
+                }
+            }   
+          });
         }
-    }
-
+    });
+    });
 
     function soloLetras(e){
        key = e.keyCode || e.which;

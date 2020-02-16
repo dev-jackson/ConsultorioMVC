@@ -76,7 +76,14 @@ span.psw {
 <body>
 
 <h2 id="login">Login</h2>
+<?php
+    session_start();
+    if($_SESSION['O']=="f"){
+      echo "<p style='color:red;'>Credenciales Incorrectas</p>";
+    }elseif($_SESSION['O']="t"){
 
+    }
+ ?>
 <form action="index.php?c=Usuario&a=login" method="post">
 <div class="form">
   <div class="imgcontainer">
@@ -190,7 +197,7 @@ function justNumbers(e)
     var pass = $("lpassword").val();
     var dataString = "username="+usuario+"&password="+pass+"";
     $.ajax({
-      type: "POST",
+      type: "GET",
       url: "index.php?c=Usuario&a=login",
       data: dataString,
       cache: false,

@@ -43,7 +43,7 @@
     <main>
         <div class="contact flex-center" style="flex-direction: column;">
             <h1>Cita</h1>
-            <form action="" class="form">
+            <form action="javascript:void(0)" class="form" method="post" id="formCita">
                 <div class="sec">
                     <label for="ci" class="txt-center">Número de cédula</label>
                     <input type="text" name="ci" id="ci" maxlength="10" onkeypress="return soloNumeros(event)">
@@ -69,8 +69,8 @@
 </body>
 
 <script type="text/javascript">
-
-    document.getElementById('enviar').onclick = function(){
+    $(document).ready(function($){
+    $('#formCita').submit(function(e){
         var ci = document.getElementById('ci').value;
         var paciente = document.getElementById('paciente').value;
         var date = document.getElementById('date').value;
@@ -103,11 +103,29 @@
         }
 
         else{
-          swal("Buen trabajo!", "Cita agendada correctamente", "success");
+          //swal("Buen trabajo!", "Cita agendada correctamente", "success");
           // return false;
           // setTimeout(function(){return true;}, 3000);
+            
+          $.ajax({
+            type:"POST",
+            url:"index.php?c=Cliente&a=registerCita",
+            data:$(this).serialize(),
+            success: function(data){
+                if(data=="t"){
+                    swal("Buen trabajo!", "Mensaje enviado correctamente", "success");
+                    setTimeout(() => {
+                        window.location.href ="index.php?a=static&s=contac";
+                    }, 1500); 
+                }else{
+                    console.log(data);
+                    swal("Ocurrio Algun Error!", "Mensaje no se a enviado", "error"); 
+                }
+            }   
+          });
         }
-    }
+    });
+    });
 
     function soloLetras(e){
        key = e.keyCode || e.which;

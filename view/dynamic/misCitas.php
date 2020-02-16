@@ -20,7 +20,6 @@
           <h5>Estado:</h3>
             <button class="btn card_btn">Atender</button>
             <button class="btn card_btn">Poner en espera</button>
-
             <button class="btn card_btn">Rechazar</button>
         </div>
       </div>

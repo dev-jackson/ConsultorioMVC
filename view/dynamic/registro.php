@@ -74,6 +74,7 @@ span.psw {
 </head>
 <body>
     <h2 id="registro">Registro</h2>
+
     <form action="index.php?c=Usuario&a=registroUsuario" method="POST">
     <div class="form">
   <div class="imgcontainer">
@@ -103,7 +104,7 @@ span.psw {
     </div>
     <div id=msgerror></div>  
     <div class="passwc">
-    <button type="submit" onclick="validar();" id="ingresar">Registrase</button>
+    <button type="submit" onclick="" id="ingresar">Registrase</button>
     <button type="button" onclick="registro();" >Volver</button>
     </div>
     

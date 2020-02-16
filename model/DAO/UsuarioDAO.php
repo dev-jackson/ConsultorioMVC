@@ -36,7 +36,7 @@
                     $u->getClave(),
                     $u->getTipoUsuario() 
                 ));
-               return $preStm->fetch(PDO::FETCH_ASSOC);
+               
            }catch(PDOException $e){
                 echo $e->getMessage();
             }
@@ -51,5 +51,16 @@
                 echo $e->getMessage();
             }
         }
+        public function getUsuarioCi($id){
+            $sql = "SELECT * FROM usuario WHERE nombres= ? ";
+            try{
+                $preStm = $this->connec->prepare($sql);
+                $preStm->execute(array($id));
+                return $preStm->fetch(PDO::FETCH_ASSOC);
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }
+        }
+      
     }
 ?>

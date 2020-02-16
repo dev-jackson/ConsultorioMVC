@@ -39,8 +39,16 @@
                     <li id="somos"><a href="index.php?a=static&s=about">¿Quiénes somos?</a></li>
                     <li id="citas" class="dropdown"><a href="#">Citas</a>
                     <div class="dropdown-content">
-                        <a href="index.php?a=dynamic&d=form">Nueva Cita</a>
-                        <a href="index.php?a=dynamic&d=misCitas">Mis Citas</a>
+                        <?php
+                        if(isset($_SESSION['C']) || isset($_SESSION['A'])){
+                            echo "<a href='index.php?a=dynamic&d=form'>Nueva Cita</a>";
+                            echo "<a href='index.php?a=dynamic&d=misCitas'>Mis Citas</a>";
+                        }else{
+                            echo "<a href='#' onclick='aviso();'>Nueva Cita</a>";
+                            echo "<a href='#' onclick='aviso();'>Mis Citas</a>";
+                        }
+                          
+                        ?>
                     </div>
                     </li>
                     <!---<li><a href="trabaja.php">Trabaja</a></li>--->
@@ -48,7 +56,7 @@
                         if(isset($_SESSION['C'])){
                             echo "<a onclick='cerrar();'>".$_SESSION['C']."</a>";
                         }elseif(isset($_SESSION['A'])){
-                            echo "<a onclick='cerrar();'>".$_SESSION['C']."</a>";
+                            echo "<a onclick='cerrar();'>".$_SESSION['A']."</a>";
                         }else{
                             echo "<a href='index.php?a=dynamic&d=login'>LOGIN</a>";
                         }
