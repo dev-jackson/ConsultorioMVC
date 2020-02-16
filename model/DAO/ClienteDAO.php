@@ -47,11 +47,21 @@
                 echo $e->getMessage();
             }
         }
-        public function getCitaAll(){
-            $sql = "SELECT * FROM cita";
+        public function getCitaAll($id){
+            $sql = "SELECT * FROM cita WHERE id_usuario = ? ";
             try{
                 $preStm = $this->connec->prepare($sql);
                 $preStm->execute(array($id));
+                return $preStm->fetchAll(PDO::FETCH_ASSOC);
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }
+        }
+        public function admgetCitalAll(){
+            $sql = "SELECT * FROM cita";
+            try{
+                $preStm = $this->connec->prepare($sql);
+                $preStm->execute();
                 return $preStm->fetchAll(PDO::FETCH_ASSOC);
             }catch(Exception $e){
                 echo $e->getMessage();

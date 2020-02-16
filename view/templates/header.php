@@ -1,4 +1,8 @@
-<?php session_start();?>
+<?php
+ if(!isset($_SESSION)){
+    session_start();
+ }
+?>
 <link rel="icon" href="assets/img/logo.png">
 <style>
 .dropdown{
@@ -35,14 +39,19 @@
             <nav class="nav">
                 <ul class="list-menu ls-none">
                     <li id="inicio"><a href="index.php?">Inicio</a></li>
-                    <li id="contac" ><a href="index.php?a=static&s=contac">Contacto</a></li>
+                    <li id="contac" ><a href="index.php?c=Admin&a=showContac">Contacto</a></li>
                     <li id="somos"><a href="index.php?a=static&s=about">¿Quiénes somos?</a></li>
                     <li id="citas" class="dropdown"><a href="#">Citas</a>
+                   
                     <div class="dropdown-content">
                         <?php
                         if(isset($_SESSION['C']) || isset($_SESSION['A'])){
-                            echo "<a href='index.php?a=dynamic&d=form'>Nueva Cita</a>";
-                            echo "<a href='index.php?a=dynamic&d=misCitas'>Mis Citas</a>";
+                            if(isset($_SESSION['A'])){
+                                echo "<a href='index.php?c=Cliente&a=showCitas'>Todas las Citas</a>";
+                            }else{
+                                echo "<a href='index.php?a=dynamic&d=form'>Nueva Cita</a>";
+                                echo "<a href='index.php?c=Cliente&a=showCitas'>Mis Citas</a>";
+                            }
                         }else{
                             echo "<a href='#' onclick='aviso();'>Nueva Cita</a>";
                             echo "<a href='#' onclick='aviso();'>Mis Citas</a>";

@@ -48,6 +48,6 @@
         $("#inicio").addClass('active');  
     });
     function aviso(){
-        swal("Inicie sesion continuar","Logueo Requerido!","error");
+        swal("Inicie sesion para continuar","Logueo Requerido!","error");
     }
 </script>

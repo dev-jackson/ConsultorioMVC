@@ -38,5 +38,16 @@
                 echo $e->getMessage();
             }
         }
+        public function getContactoAll(){
+            $sql = "SELECT * FROM contacto";
+            try{
+                $preStm = $this->connec->prepare($sql);
+                $preStm->execute();
+                return $preStm->fetchAll(PDO::FETCH_ASSOC);
+                
+            }catch(PDOException $e){
+                echo $e->getMessage();
+            }
+        }
     }
 ?>

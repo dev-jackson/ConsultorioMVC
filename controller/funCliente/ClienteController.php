@@ -30,5 +30,26 @@ require_once './model/DTO/Usuario.php';
                 echo "f";
             }
         }
+        public function showCitas(){
+            session_start();
+            $es;
+            $res;
+            $result;
+            if(isset($_SESSION['C'])){
+                $es=$_SESSION['C'];
+                $res=$this->user->getUsuarioCI($es);
+                $result= $this->cli->getCitaAll($res['id_usuario']);
+            }else{
+                $es=$_SESSION['A'];
+                $res=$this->user->getUsuarioCI($es);
+                $result= $this->cli->admgetCitalAll();
+            }
+            
+            require_once LIB;
+            require_once HEADER;
+            require_once "view/dynamic/misCitas.php";
+            require_once FOOTER;
+        }
+
     }
 ?>
