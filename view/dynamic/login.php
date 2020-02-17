@@ -76,17 +76,8 @@ span.psw {
 <body>
 
 <h2 id="login">Login</h2>
-<?php
-    session_start();
-    if(isset($_SESSION)){
-    if($_SESSION['O']=="f"){
-      echo "<p style='color:red;'>Credenciales Incorrectas</p>";
-    }elseif($_SESSION['O']="t"){
 
-    }
-  }
- ?>
-<form action="index.php?c=Usuario&a=login" method="post">
+<form action="javascript:void(0)" method="post" id="ajaxFromLogin">
 <div class="form">
   <div class="imgcontainer">
     <img src="assets/img/doctor.png" alt="Avatar" class="avatar" >
@@ -114,8 +105,6 @@ span.psw {
     <button type="button" onclick="registro();" >Registro</button>
     </div>
   </div>
-
-
 </div>
 </form>
 </body>
@@ -150,7 +139,27 @@ $('body').on('keyup', '#uname', function(){
 
   }
 });
-
+    $(document).ready(function($){
+    $('#ajaxFromLogin').submit(function(e){
+        $.ajax({
+          type: "POST",
+          url: "index.php?c=Usuario&a=login",
+          data: $(this).serialize(),
+          success: function(data){
+            if(data=="t"){
+              swal("Exelente!","Login Exitoso!","success");
+              setTimeout(() => {
+                window.location.href="index.php?";
+              }, 1000);
+            }else{
+              swal("Credenciales Incorrectas","Login Erroneo","error");
+              $("#uname").val("");
+  	          $("#lpassword").val("");
+            }
+          }
+        });
+    });
+  });
 function mostrarPassword(){
     var cambio = document.getElementById("lpassword");
     if(cambio.type == "password"){

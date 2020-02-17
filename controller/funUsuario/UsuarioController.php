@@ -19,18 +19,15 @@
                 if($rest['tipo_usuario']=='C'){
                     session_start();
                     $_SESSION['C']=$rest['nombres'];
-                 header('Location: index.php?');
+                    echo "t";
                 }else{
                     session_start();
                     $_SESSION['A']=$rest['nombres'];
-                   header('Location: index.php?');
+                    echo "t";
                 }
             }else{
-            session_start();
-            session_destroy();
-            session_start();
-            $_SESSION['O']="f";
-             header("Location: index.php?a=dynamic&d=login");
+            echo "t";
+            
             }  
         }
         public function validateUsuario(){

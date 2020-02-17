@@ -62,7 +62,7 @@ tr:hover td{
 
             
             <tr>
-                <th>Correo</th><th>Mensaje</th>
+                <th>Correo</th><th>Mensaje</th><th>Operaciones</th>
             </tr>
             </thead>
             <?php
@@ -71,7 +71,8 @@ tr:hover td{
                 <tr>
                     <td><?php echo($gp['nombre']); ?></td>
                     <td><?php echo($gp['mensaje']); ?></td>
-
+                    <td><?php echo assa;
+                              echo essa;?></td>
                    
                 </tr>
                     <?php endforeach; ?>
